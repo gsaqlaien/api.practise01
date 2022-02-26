@@ -9,10 +9,13 @@ const searchButton = () => {
     if (isNaN(inputValue) || inputValue == "") {
         error.innerText = "Please place a number ";
         input.value = "";
+        main.innerHTML = "";
+
     }
     else if (inputValue <= 0) {
         error.innerText = "Please place a positive value to get the result";
         input.value = "";
+        main.innerHTML = "";
     }
 
     else {
@@ -20,13 +23,14 @@ const searchButton = () => {
             .then(res => res.json())
             .then(data => cardsDisplay(data.cards))
         input.value = "";
+        error.innerHTML = "";
     }
 
 }
 
 const cardsDisplay = (cards) => {
     for (const card of cards) {
-        console.log(card.image);
+        console.log(card);
         const div = document.createElement('div');
         div.classList.add("col-lg-4");
         div.classList.add("mb-5");
@@ -35,9 +39,9 @@ const cardsDisplay = (cards) => {
         <div class="card" style="width: 18rem;">
             <img src="${card.image}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">${card.code}</h5>
+                <p class="card-text">${card.suit}</p>
+                <a href="#" class="btn btn-primary">See Details</a>
         </div>
 </div>
         
