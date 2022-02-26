@@ -2,8 +2,9 @@ const searchButton = () => {
     document.getElementById('search-button')
     const input = document.getElementById('input-value');
     const error = document.getElementById('error');
+    const main = document.getElementById('main');
 
-    const inputValue = input.value;
+    const inputValue = parseInt(input.value);
 
     if (isNaN(inputValue) || inputValue == "") {
         error.innerText = "Please place a number ";
@@ -17,14 +18,34 @@ const searchButton = () => {
     else {
         fetch(`https://deckofcardsapi.com/api/deck/new/draw/?count=${inputValue}`)
             .then(res => res.json())
-            .then(data => cardsDisplay(data))
+            .then(data => cardsDisplay(data.cards))
         input.value = "";
     }
 
 }
 
 const cardsDisplay = (cards) => {
-    console.log(cards)
+    for (const card of cards) {
+        console.log(card.image);
+        const div = document.createElement('div');
+        div.classList.add("col-lg-4");
+        div.classList.add("mb-5");
+        div.innerHTML = `
+
+        <div class="card" style="width: 18rem;">
+            <img src="${card.image}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+</div>
+        
+        
+        `;
+        main.appendChild(div);
+
+    }
 
 }
 
@@ -52,6 +73,6 @@ const cardsDisplay = (cards) => {
 //             .then(data => cardsDisplay(data))
 //     }
 //     const cardsDisplay = (cards) => {
-//         console.log(cards)
+//         console.log(cardsDisplay)
 //     }
 // }
