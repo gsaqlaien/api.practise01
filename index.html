@@ -13,11 +13,17 @@
 <body>
     <h1 class="text-center text-primary m-4 text-uppercase">Api practise for everyday</h1>
 
-    <form class="d-flex mx-auto w-50">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    <div class="container">
+        <div class="d-flex">
+            <input id="input-value" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button onclick="searchButton()" id="search-button" class="btn btn-outline-primary"
+                type="submit">Search</button>
+        </div>
+    </div>
 
+    <h2 id="error" class="text-center text-danger">
+
+    </h2>
 
 
 
